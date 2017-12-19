@@ -1,0 +1,24 @@
+<image class="bg-image" src="{{songImg}}" mode="widthFix"></image>
+<view class="body">
+    <view class="top">
+        <image class="pic_album" src="{{songImg}}"></image>
+        <view class="music-info">
+            <view class="songname">{{songname}}</view>
+            <view class="singer">{{singer}}</view>
+        </view>
+        <view class="status-box" bindtap="playstatus">
+            <image class="status" src="{{status}}"></image>
+        </view>
+    </view>
+    <view class="bottom">
+        <view class="line-box">
+            <view class="time current-time">{{currentTime}}</view>
+                <view class="line-bg">
+                    <view class="line current-line">
+                        <view class="duration-line" style="width:{{cTime / dTime * 100}}%"></view>
+                    </view>
+                </view>
+            <view class="time duration-time">{{durationTime}}</view>
+        </view>
+    </view>
+</view>

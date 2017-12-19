@@ -1,0 +1,96 @@
+<!--index.wxml-->
+<!-- <view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view> -->
+
+<!-- 导航 -->
+<view class="nav" wx:if="{{navData}}">
+    <view class="nav-name {{navCurrent == index ? 'nav-current':''}}" data-index="{{index}}" wx:for="{{navData}}" wx:key="{{index}}" bindtap="bindNavChange">
+        {{navData[index]}}
+    </view>
+</view>
+
+<!-- 推荐 -->
+<view class="block" hidden="{{navCurrent != 0}}">
+    <view class="swiper">
+        <swiper indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="duration">
+            <swiper-item wx:if="{{imgUrls.length}}"  wx:for="{{imgUrls}}" wx:key="{{index}}">
+                <image lazy-load="{{lazyLoad}}" src="{{imgUrls[index].picUrl}}" class="slide-image" data-index="{{index}}" mode="widthFix" bindtap="swiperImageTap"></image>
+            </swiper-item>
+        </swiper>
+    </view>
+
+    <view class="content">
+        <view class="title">电台</view>
+        <view class="ul">
+            <view class="con" wx:if="{{radioStation.length>0}}" wx:for="{{radioStation}}" wx:key="{{index}}">
+                <image lazy-load="{{lazyLoad}}" class="con-image" src="{{radioStation[index].picUrl}}" mode="widthFix"></image>
+                <view class="introduce">{{radioStation[index].Ftitle}}</view>
+                <image lazy-load="{{lazyLoad}}" class="icon-play" src="{{iconPlay}}"></image>
+            </view>
+        </view>
+    </view>
+
+    <view class="content">
+        <view class="title">热门歌单</view>
+        <view class="ul">
+            <view class="con" wx:if="{{songList.length>0}}" wx:for="{{songList}}" wx:key="{{index}}">
+                <image lazy-load="{{lazyLoad}}" src="{{songList[index].picUrl}}" mode="widthFix"></image>
+                <view class="introduce">{{songList[index].Ftitle}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- 排行榜 -->
+<view class="block ranking-lists" hidden="{{navCurrent != 1}}" wx:if="{{rankingLists.length>0}}">
+    <view class="ranking-list" data-id="{{item.id}}" bindtap="moveToSomeList" wx:for="{{rankingLists}}" wx:key="{{index}}">
+        <image lazy-load="{{lazyLoad}}" src="{{rankingLists[index].picUrl}}"></image>
+        <view class="list-introduce">
+            <view class="lists-title">{{rankingLists[index].topTitle}}</view>
+            <view class="lists-info" wx:for="{{rankingLists[index].songList}}" wx:key="{{index}}">
+                {{index + 1}}
+                <view class="songname">{{item.songname}}</view>
+                 - {{item.singername}}
+            </view>
+            <view class="icon-more">></view>
+        </view>
+    </view>
+</view>
+
+<!-- 搜索 -->
+<view class="block" hidden="{{navCurrent != 2}}">
+    <view class="search-box">
+        <image class="icon-search" src="{{iconSearch}}"></image>
+        <input class="search-input" confirm-type="搜索" placeholder="搜索歌曲" bindconfirm="goSearch" bindblur="goSearch" value="{{serachValue}}" ></input>
+    </view>
+    <view class="hot-search" hidden="{{serachValue != ''}}">
+        <view class="hot-search-title">热门搜索</view>
+        <view class="hot-search-box" hidden="{{hotSearchKeyword == ''}}">
+            <view class="hot-search-value special-key">{{hotSearchKeyword.special_key}}</view>
+            <view class="hot-search-value" bindtap="goSearchTap" data-keyword="{{item.k}}" wx:if="{{hotSearchKeyword.hotkey.length>0}}" wx:for="{{hotSearchArr}}" wx:key="{{index}}">{{item.k}}</view>
+        </view>
+    </view>
+    <view class="search-lists" hidden="{{serachValue == ''}}">
+        <view class="search-lists-ul">
+            <view class="search-lists-ul-li" bindtap="goPlayPage" data-index="{{index}}" wx:if="{{searchLists.data.song.list.length>0}}" wx:for="{{searchLists.data.song.list}}" wx:key="{{index}}">
+                <view class="icon-music-box">
+                    <image class="icon-music" src="{{iconMusic}}"></image>
+                </view>
+                <view class="music-info">
+                    <view class="music-songname">{{item.songname}}</view>
+                    <view class="music-singer">{{item.singer[0].name}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

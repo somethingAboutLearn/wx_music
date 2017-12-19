@@ -1,0 +1,37 @@
+<view class="body">
+    <view class="top-blur" style="background-image:url({{rankingListDetail.topinfo.pic_album}})">
+    </view>
+
+    <view class="top">
+        <view class="top-top">
+            <image class="album-image" src="{{rankingListDetail.topinfo.pic_album}}"></image>
+            <view class="album-info">
+                <view class="album-title">{{rankingListDetail.topinfo.ListName}}</view>
+                <view hidden="{{rankingListDetail.day_of_year == ''}}">第{{rankingListDetail.day_of_year}}天</view>
+                <view hidden="{{rankingListDetail.day_of_year != ''}}">第{{rankingListDetail.date}}周</view>
+                <view>{{rankingListDetail.update_time}} 更新</view>
+            </view>
+        </view>
+        <view class="btn-play" bindtap="tapPlayBtn" hidden="{{playSong == true}}">播放</view>
+        <view class="status-play" hidden="{{playSong == false}}">
+            <image class="btn-pause" bindtap="tapPauseBtn" src="{{iconPause}}"></image>
+            <view class="play-box">
+                <view class="play-song">{{songName}}</view>
+                <view class="play-info">{{songInfo}}</view>
+            </view>
+        </view>
+    </view>
+
+    <view class="bottom">
+        <view class="bottom-header">排行榜 共{{rankingListDetail.songlist.length}}首</view>
+        <view class="ul">
+            <view class="li" bindtap="playSong" data-index="{{index + 1}}" wx:if="{{rankingListDetail.songlist.length>0}}" wx:for="{{rankingListDetail.songlist}}" wx:key="{{index}}">
+                <view class="left {{index<3? 'top-three':''}}">{{index + 1}}</view>
+                <view class="right">
+                    <view class="songname">{{item.data.songname}}</view>
+                    <view class="singername">{{item.data.singer[0].name}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
