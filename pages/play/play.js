@@ -108,10 +108,12 @@ Page({
       wx.getStorage({
           key: 'someSongData',
           success: function(res) {
+            console.log(res)
               var str = "";
               var songData = res.data;
               var songImg = "http://y.gtimg.cn/music/photo_new/T002R150x150M000" + res.data.albummid + ".jpg";
-              var songUrl = "http://ws.stream.qqmusic.qq.com/C100" + res.data.songmid + ".m4a?fromtag=38";
+              // var songUrl = "http://ws.stream.qqmusic.qq.com/C100" + res.data.songmid + ".m4a?fromtag=38";
+              var songUrl = "https://api.bzqll.com/music/tencent/url?key=579621905&id=" + res.data.songmid + "&br=320"
               var songname = res.data.songname;
               res.data.singer.forEach(function (value, index) {
                   str += value.name;

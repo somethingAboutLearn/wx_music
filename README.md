@@ -11,7 +11,8 @@
 * 爬取排行榜单  https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg
 * 爬取某一排行榜  https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?topid=5  需要一个查询字段topid
 * 爬取热门搜索关键词  https://c.y.qq.com/splcloud/fcgi-bin/gethotkey.fcg
-* 爬取搜索结果  https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp?w=像风一样  需要一个查询字段w
+* 爬取搜索结果  ~~https://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp?w=像风一样  需要一个查询字段w~~ https://c.y.qq.com/soso/fcgi-bin/client_search_cp?w=像风一样
+* 播放某一首 ~~http://ws.stream.qqmusic.qq.com/C100" + songmid + ".m4a?fromtag=38 需要一个 songmid~~ QQ音乐的接口升级处理里，拿某首歌都需要新的文件名为路径，带上 cookie 以及一些参数 vkey, guid。 但有热心人士对这些接口都做了封装，就站在巨人的肩膀上吧。 https://api.bzqll.com/music/tencent/url?key=579621905&id=" + songmid + "&br=320  需要 songmid
 * 音乐播放推荐使用新版本的 const backgroundAudioManager = wx.getBackgroundAudioManager();  //获取全局唯一的背景音频管理器
 * 其他  语法方面参考 Vue.js ，也可以查看微信开发文档(https://mp.weixin.qq.com/debug/wxadoc/dev/api/)
 	
